@@ -1,2 +1,2 @@
 # guestbook-helm-chart
-guestbook helm chart
+A guestbook Helm chart for Kubernetes.
