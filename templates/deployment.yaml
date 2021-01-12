@@ -39,6 +39,8 @@ spec:
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           env:
+          - name: GET_HOSTS_FROM
+            value: dns
           - name: REDIS_MASTER_SERVICE_HOST
           {{- if .Values.redis.enabled }}
             value: {{ template "redis.fullname" . }}-master
