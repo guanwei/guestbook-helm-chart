@@ -40,16 +40,16 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
           env:
           - name: GET_HOSTS_FROM
-            value: dns
+            value: env
           - name: REDIS_MASTER_SERVICE_HOST
           {{- if .Values.redis.enabled }}
-            value: {{ template "redis.fullname" . }}-master
+            value: {{ template "guestbook.name" . }}-redis-master
           {{- else }}
             value: {{ .Values.externalDatabase.host | quote }}
           {{- end }}
           - name: REDIS_SLAVE_SERVICE_HOST
           {{- if .Values.redis.enabled }}
-            value: {{ template "redis.fullname" . }}-slave
+            value: {{ template "guestbook.name" . }}-redis-slave
           {{- else }}
             value: {{ .Values.externalDatabase.host | quote }}
           {{- end }}
