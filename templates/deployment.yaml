@@ -38,6 +38,19 @@ spec:
               port: http
           resources:
 {{ toYaml .Values.resources | indent 12 }}
+          env:
+          - name: REDIS_MASTER_SERVICE_HOST
+          {{- if .Values.redis.enabled }}
+            value: {{ template "redis.fullname" . }}-master
+          {{- else }}
+            value: {{ .Values.externalDatabase.host | quote }}
+          {{- end }}
+          - name: REDIS_SLAVE_SERVICE_HOST
+          {{- if .Values.redis.enabled }}
+            value: {{ template "redis.fullname" . }}-slave
+          {{- else }}
+            value: {{ .Values.externalDatabase.host | quote }}
+          {{- end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}

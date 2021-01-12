@@ -45,3 +45,5 @@ affinity: {}
 
 redis:
   enabled: true
+externalDatabase:
+  host: localhost
